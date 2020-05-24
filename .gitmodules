@@ -1,0 +1,3 @@
+[submodule "GPIOTest"]
+	path = GPIOTest
+	url = https://github.com/leavs/GPIOTest.git

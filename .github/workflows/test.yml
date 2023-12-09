@@ -22,7 +22,7 @@ jobs:
                 body_path: README.md
                 target_commitish: master
                 draft: false
-                prerelease: true
+                prerelease: false
             - name: Print Debug Message
               env:
                 TIME: "${{ steps.time.outputs.time }}"

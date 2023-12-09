@@ -8,18 +8,26 @@ jobs:
         steps:
             - name: Checkout
               uses: actions/checkout@v3
+            - name: Get Time
+              id: time
+              uses: nanzm/get-time-action@master
+              with:
+                timeZone: UTC+8
+                format: 'YYYY-MM-DD-HH-mm-ss'
             - name: Release
               id: release
               uses: softprops/action-gh-release@v1
               with:
-                tag_name: b${{ github.run_number }}
+                tag_name: ${{ steps.time.outputs.time }}
                 body_path: README.md
-                token: ${{ secrets.GITHUB_TOKEN }}
                 target_commitish: master
                 draft: false
                 prerelease: true
             - name: Print Debug Message
+              env:
+                TIME: "${{ steps.time.outputs.time }}"
               run: |
                 echo "The current github.ref is ${{ github.ref }} Github run number is ${{github.run_number}}"
+                echo $TIME
         outputs:
             release_id: ${{ steps.release.outputs.id }}

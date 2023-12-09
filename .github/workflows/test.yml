@@ -14,12 +14,15 @@ jobs:
               with:
                 timeZone: CST-8
                 format: 'YYYYMMDD-HHmm'
+            - name: Generate Changelog
+              run: echo "# Good things have arrived" > ${{ github.workspace }}-CHANGELOG.txt
             - name: Release
               id: release
               uses: softprops/action-gh-release@v1
               with:
                 tag_name: ${{ steps.time.outputs.time }}
-                body_path: README.md
+                body_path: ${{ github.workspace }}-CHANGELOG.txt
+                generate_release_notes: true
                 target_commitish: master
                 draft: false
                 prerelease: false
@@ -29,11 +32,11 @@ jobs:
               run: |
                 echo "The current github.ref is ${{ github.ref }} "
                 echo "Github run number is ${{github.run_number}}"
-                echo "Release download link is ${{ steps.release.outputs.upload_url}} "
+                echo "Release download link is ${{ steps.release.outputs.url}} "
                 echo "Release id is ${{ steps.release.outputs.id}}"
                 echo "release time is ${TIME}"
         outputs:
-            upload_url: ${{ steps.release.outputs.upload_url }}
+            release_url: ${{ steps.release.outputs.url }}
             release_id: ${{ steps.release.outputs.id }}
             tag_name: ${{ steps.time.outputs.time }}
             release_time: ${TIME}

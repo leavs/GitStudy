@@ -3,7 +3,7 @@ name: Test Github Action
 on: push
 
 jobs:
-    build:
+    prepare_release:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
@@ -27,7 +27,13 @@ jobs:
               env:
                 TIME: "${{ steps.time.outputs.time }}"
               run: |
-                echo "The current github.ref is ${{ github.ref }} Github run number is ${{github.run_number}}"
-                echo $TIME
+                echo "The current github.ref is ${{ github.ref }} "
+                echo "Github run number is ${{github.run_number}}"
+                echo "Release download link is ${{ steps.release.outputs.upload_url}} "
+                echo "Release id is ${{ steps.release.outputs.id}}"
+                echo "release time is ${TIME}"
         outputs:
+            upload_url: ${{ steps.release.outputs.upload_url }}
             release_id: ${{ steps.release.outputs.id }}
+            tag_name: ${{ steps.time.outputs.time }}
+            release_time: ${TIME}

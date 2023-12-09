@@ -21,8 +21,8 @@ jobs:
               uses: softprops/action-gh-release@v1
               with:
                 tag_name: ${{ steps.time.outputs.time }}
-                #body_path: ${{ github.workspace }}-CHANGELOG.txt
-                generate_release_notes: true
+                body_path: ${{ github.workspace }}-CHANGELOG.txt
+                generate_release_notes: false
                 target_commitish: master
                 draft: false
                 prerelease: false

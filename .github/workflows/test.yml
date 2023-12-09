@@ -12,7 +12,7 @@ jobs:
               id: time
               uses: nanzm/get-time-action@v2.0
               with:
-                timeZone: 8
+                timeZone: CST-8
                 format: 'YYYYMMDD-HHmm'
             - name: Release
               id: release

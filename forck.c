@@ -3,7 +3,7 @@
 
 void who_is(void)
 {
-	printf("Xiaoqiang here!!\n");
+	printf("Xiaoqiang here, added feature 1!!\n");
 }
 
 int main(void)

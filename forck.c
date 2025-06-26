@@ -5,6 +5,7 @@ void who_is(void)
 {
 	printf("Xiaoqiang here, added feature 1!!\n");
 	printf("Xiaoqiang here, added feature 2!!\n");
+	printf("Xiaoqiang here, added feature 3!!\n");
 }
 
 int main(void)
